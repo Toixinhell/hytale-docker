@@ -8,11 +8,12 @@ services:
     volumes:
       - ./data:/hytale/Server
       - ./backups:/hytale/backups
+      - hytale-data:/hytale
     environment:
       HYTALE_PORT: "5520"
       USE_AOT_CACHE: "true"
       ENABLE_AUTO_UPDATE: "true"
-      SKIP_DELETE_ON_FORBIDDEN: "false"
+      SKIP_DELETE_ON_FORBIDDEN: "true"
       ACCEPT_EARLY_PLUGINS: "false"
       ALLOW_OP: "false"
       ASSETS_PATH: "/hytale/Assets.zip"
@@ -25,3 +26,6 @@ services:
       JAVA_XMS: "4G"
       JAVA_XMX: "4G"
     restart: unless-stopped
+
+volumes:
+  hytale-data:
