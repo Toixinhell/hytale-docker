@@ -10,7 +10,9 @@ services:
     volumes:
       - ${HOME}/data/config/hytale-data:/hytale
       # Allows to persist server authorization with /auth persistence Encrypted
-      - /etc/machine-id:/etc/machine-id:ro
+      - ${MACHINE_ID_PATH:-/etc/machine-id}:/etc/machine-id:ro
+      # Some distros/tools read the dbus path instead of /etc/machine-id
+      - ${MACHINE_ID_PATH:-/etc/machine-id}:/var/lib/dbus/machine-id:ro
     environment:
       HYTALE_PORT: "5520"
       USE_AOT_CACHE: "true"
